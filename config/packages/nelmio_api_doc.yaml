@@ -1,0 +1,141 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: Crud
+            description: DOC for Crud
+            version: 1.0.0
+        paths:
+            /book/add:
+                post:
+                    description: Create a book
+                    tags:
+                        - Book
+                    requestBody:
+                      content:
+                        application/json:
+                          schema:
+                            type: object
+                            properties:
+                              title: {type: string, example: "Title"}
+                              publisher: {type: string, example: "Publisher"}
+                              author: {type: string, example: "Author"}
+                              genre: {type: string, example: "Genre"}
+                              date_publication: {type: date, example: "2022-10-06"}
+                              amount_words: {type: integer, example: "0"}
+                              price: {type: float, example: "10,10"}
+                    responses:
+                        200:
+                            description: OK
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            status: { type: string , example: 'Book created!'}
+            /book/get/{id}:
+              post:
+                description: Get info a book
+                tags:
+                  - Book
+                requestBody:
+                  content:
+                    application/json:
+                      schema:
+                        type: object
+                        properties:
+                          id: { type: integer, example: "1" }
+                responses:
+                  200:
+                    description: OK
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties:
+                            title: { type: string, example: "Title" }
+                            publisher: { type: string, example: "Publisher" }
+                            author: { type: string, example: "Author" }
+                            genre: { type: string, example: "Genre" }
+                            date_publication: { type: date, example: "2022-10-06" }
+                            amount_words: { type: integer, example: "0" }
+                            price: { type: float, example: "10,10" }
+
+            /book/get:
+              post:
+                description: Get info all books
+                tags:
+                  - Book
+                responses:
+                  200:
+                    description: OK
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties:
+                            title: { type: string, example: "Title" }
+                            publisher: { type: string, example: "Publisher" }
+                            author: { type: string, example: "Author" }
+                            genre: { type: string, example: "Genre" }
+                            date_publication: { type: date, example: "2022-10-06" }
+                            amount_words: { type: integer, example: "0" }
+                            price: { type: float, example: "10,10" }
+
+            /book/update/{id}:
+              post:
+                description: Update a book
+                tags:
+                  - Book
+                requestBody:
+                  content:
+                    application/json:
+                      schema:
+                        type: object
+                        properties:
+                          id: { type: integer, example: "1" }
+                          title: { type: string, example: "Title" }
+                          publisher: { type: string, example: "Publisher" }
+                          author: { type: string, example: "Author" }
+                          genre: { type: string, example: "Genre" }
+                          date_publication: { type: date, example: "2022-10-06" }
+                          amount_words: { type: integer, example: "0" }
+                          price: { type: float, example: "10,10" }
+                responses:
+                  200:
+                    description: OK
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties:
+                            status: { type: string , example: 'Book updated!' }
+                            id: { type: integer , example: '1!' }
+
+            /book/delete/{id}:
+              post:
+                description: Delete a book
+                tags:
+                  - Book
+                requestBody:
+                  content:
+                    application/json:
+                      schema:
+                        type: object
+                        properties:
+                          id: { type: integer, example: "1" }
+                responses:
+                  200:
+                    description: OK
+                    content:
+                      application/json:
+                        schema:
+                          type: object
+                          properties:
+                            status: { type: string , example: 'Book deleted!' }
+        tags:
+            - name: Book
+    areas: # to filter documented areas
+        path_patterns: # an array of regexps (document only routes under /api, except /api/doc)
+            - ^/api(?!/doc$)
+        host_patterns: # document only routes with a host of the form api.*
+            - ^api\.
